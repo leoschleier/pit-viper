@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "pyper"
+version = "0.1.0"
+description = "Pyper is a Python package that offers powerful configuration management capabilities like the Viper package in Golang."
+authors = ["Leo Schleier <43878374+leoschleier@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -5,10 +5,13 @@ description = "Pyper is a Python package that offers powerful configuration mana
 authors = ["Leo Schleier <43878374+leoschleier@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [{include = "pyper", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -17,9 +20,11 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 select = ["ALL"]
+ignore = ["ANN101", "ANN102"]  # Type annotations for 'self' and 'cls'
 fixable = ["ALL"]
-fix = true
+fix = false
 line-length = 79
+target-version = "py311"
 
 [tool.ruff.pycodestyle]
 max-doc-length = 72
@@ -29,7 +34,13 @@ convention = "numpy"
 
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["E401"]  # Unused import
+"tests/*" = ["S101"]  # Use of assert detected
 
 
 [tool.black]
 line-length = 79
+
+
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

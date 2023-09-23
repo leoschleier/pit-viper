@@ -16,10 +16,10 @@ class UnsupportedFileFormatError(Exception):
         super().__init__(f"Unsupported file format: {path.suffix()}")
 
 
-def populate_env(
+def auto_env(
     *,
     path: Path | None = None,
-    override: bool = False,
+    overwrite: bool = False,
 ) -> dict[str, str]:
     """Populate environment variables with variables from a `.env` file.
 
@@ -28,9 +28,9 @@ def populate_env(
     path : Path | None, optional
         Path to the `.env` file. If not set, `pyper` will try to find
         the file in the current working directory, by default None
-    override : bool, optional
-        Whether or not to override the environment variables with the
-        variables from the `.env` file, by default False
+    overwrite : bool, optional
+        Whether or not to overwrite existing environment variables with
+        the variables from the `.env` file, by default False
 
     Returns
     -------
@@ -45,33 +45,34 @@ def populate_env(
     """
     if path is None:
         path = Path(".env")
-    if not path.exists():
-        return dict(os.environ)
-    if path.suffix() == ".env":
-        raise UnsupportedFileFormatError(path=path)
+    if path.exists():
+        if ".env" in [path.name, path.suffix]:
+            _populate_env(path=path, overwrite=overwrite)
+        else:
+            raise UnsupportedFileFormatError(path=path)
 
-    _populate_env(path=path, override=override)
     return dict(os.environ)
 
 
-def _populate_env(*, path: Path, override: bool = False) -> None:
+def _populate_env(*, path: Path, overwrite: bool = False) -> None:
     """Populate environment variables."""
     with path.open(encoding="utf-8") as stream:
         for line in stream:
             if line == _NEW_LINE:
                 continue
+
             k, v = line.split(_EQUALS)
 
             # Strip any combination of enclosing characters.
             k = k.strip(_ENCLOSING_CHARS)
             v = v.strip(_ENCLOSING_CHARS)
 
-            _set_env(key=k, value=v, override=override)
+            _set_variable(key=k, value=v, overwrite=overwrite)
 
 
-def _set_env(key: str, value: str, *, override: bool = False) -> str:
+def _set_variable(key: str, value: str, *, overwrite: bool = False) -> str:
     """Set an environment variable."""
-    if override:
+    if overwrite:
         os.environ[key] = value
     else:
         os.environ.setdefault(key, value)

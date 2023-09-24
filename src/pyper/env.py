@@ -23,6 +23,9 @@ def auto_env(
 ) -> dict[str, str]:
     """Populate environment variables with variables from a `.env` file.
 
+    The `.env` file is being read as text using the UTF-8 character
+    encoding.
+
     Parameters
     ----------
     path : Path | None, optional

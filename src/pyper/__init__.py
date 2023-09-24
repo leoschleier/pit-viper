@@ -1,4 +1,4 @@
-"""Pyper offers powerful configuration management capabilities.
+"""Pyper offers configuration management capabilities.
 
 This package currently provides one main function, `auto_env`,
 which reads a `.env` file and sets the corresponding environment

@@ -1,6 +1,6 @@
 # pyper
 
-Pyper is a Python package that offers powerful configuration management
+Pyper is a Python package that offers configuration management
 capabilities like the Viper package in Golang.
 
 ## Table of Contents

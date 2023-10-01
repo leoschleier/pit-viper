@@ -1,10 +1,26 @@
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "v$version"
+version_files = [
+    "pyproject.toml:version",
+    "src/pyper/__version__.py",
+]
+changelog_file = "docs/CHANGELOG.md"
+
+
 [tool.poetry]
 name = "pyper"
 version = "0.1.0"
 description = "Pyper is a Python package that offers configuration management capabilities like the Viper package in Golang."
 authors = ["Leo Schleier <43878374+leoschleier@users.noreply.github.com>"]
 license = "MIT"
-readme = "README.md"
+keywords = ["pyper"]
+readme = "docs/README.md"
+homepage = "https://github.com/leoschleier/pyper"
+# See: https://pypi.org/classifiers/
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+]
 packages = [{include = "pyper", from = "src"}]
 
 [tool.poetry.dependencies]
@@ -39,7 +55,6 @@ convention = "numpy"
 
 [tool.black]
 line-length = 79
-
 
 
 [tool.pytest.ini_options]

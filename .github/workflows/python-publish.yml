@@ -28,6 +28,6 @@ jobs:
         poetry install
     - name: Build and publish
       env:
-        PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
       run: |
         ./scripts/publish

@@ -17,6 +17,10 @@ license = "MIT"
 keywords = ["pyper"]
 readme = "docs/README.md"
 homepage = "https://github.com/leoschleier/pyper"
+# See: https://pypi.org/classifiers/
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+]
 packages = [{include = "pyper", from = "src"}]
 
 [tool.poetry.dependencies]

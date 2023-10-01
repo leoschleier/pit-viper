@@ -1,2 +1,3 @@
 # Publish to PyPI using POETRY_PYPI_TOKEN_PYPI from the environment
-poetry publish --build -r pyper
+poetry config pypi-token.pypi $PYPI_TOKEN
+poetry publish --build

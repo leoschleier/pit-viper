@@ -29,8 +29,8 @@ def auto_env(
     Parameters
     ----------
     path : Path | None, optional
-        Path to the `.env` file. If not set, `pyper` will try to find
-        the file in the current working directory, by default None
+        Path to the `.env` file. If not set, `pit-viper` will try to
+        find the file in the current working directory, by default None
     overwrite : bool, optional
         Whether or not to overwrite existing environment variables with
         the variables from the `.env` file, by default False

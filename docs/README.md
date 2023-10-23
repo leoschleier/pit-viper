@@ -1,6 +1,6 @@
-# pyper
+# pit-viper
 
-Pyper is a Python package that offers configuration management capabilities
+Pit-Viper is a Python package that offers configuration management capabilities
 like the Viper package in Golang.
 
 ## Table of Contents
@@ -13,24 +13,24 @@ like the Viper package in Golang.
 
 ## Installation
 
-You can install pyper using pip:
+You can install `pit-viper` using `pip`:
 
 ```bash
-pip install pyper
+pip install pit-viper
 ```
 
 ## Usage
 
 ### Environment Variables
 
-The `pyper` package provides the `auto_env` function that loads environment
+The `pit-viper` package provides the `auto_env` function that loads environment
 variables from a `.env` file. The function returns a `dict` of all existing
 environment variables.
 
 ```python
-import pyper
+from pit import viper
 
-env = pyper.auto_env()
+env = viper.auto_env()
 ```
 
 ## Development

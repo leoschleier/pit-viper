@@ -4,25 +4,25 @@ name = "cz_conventional_commits"
 tag_format = "v$version"
 version_files = [
     "pyproject.toml:version",
-    "src/pyper/__version__.py",
+    "src/pit/viper/__version__.py",
 ]
 changelog_file = "docs/CHANGELOG.md"
 
 
 [tool.poetry]
-name = "pyper"
+name = "pit-viper"
 version = "0.1.0"
-description = "Pyper is a Python package that offers configuration management capabilities like the Viper package in Golang."
+description = "Pit-Viper is a Python package that offers configuration management capabilities like the Viper package in Golang."
 authors = ["Leo Schleier <43878374+leoschleier@users.noreply.github.com>"]
 license = "MIT"
-keywords = ["pyper"]
+keywords = ["pit-viper"]
 readme = "docs/README.md"
-homepage = "https://github.com/leoschleier/pyper"
+homepage = "https://github.com/leoschleier/pit-viper"
 # See: https://pypi.org/classifiers/
 classifiers = [
     "Programming Language :: Python :: 3.11",
 ]
-packages = [{include = "pyper", from = "src"}]
+packages = [{include = "pit", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"

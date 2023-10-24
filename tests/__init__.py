@@ -1,1 +1,1 @@
-"""Test cases for the `pyper` package."""
+"""Test cases for the `pit-viper` package."""

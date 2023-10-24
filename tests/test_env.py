@@ -4,8 +4,7 @@ from pathlib import Path
 
 import py
 import pytest
-
-from pyper import env
+from pit.viper import env
 
 _TEST_DOTENV_PATH = Path(__file__).parent / "data" / ".env"
 

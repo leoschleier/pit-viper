@@ -33,7 +33,7 @@ def read_config(path: Path) -> dict[str, Any]:
         return _read_json(path)
     elif file_extension == ".toml":  # noqa: RET505
         return _read_toml(path)
-    elif file_extension in [".yml", "yaml"]:
+    elif file_extension in [".yml", ".yaml"]:
         return _read_yaml(path)
 
     msg = f"Config file extension {file_extension} not supported."
@@ -53,7 +53,7 @@ def _read_json(path: Path) -> dict[str, Any]:
     dict[str, Any]
         JSON file contents.
     """
-    with path.open() as stream:
+    with path.open("rb") as stream:
         return json.load(stream)
 
 
@@ -70,8 +70,8 @@ def _read_toml(path: Path) -> dict[str, Any]:
     dict[str, Any]
         TOML file contents.
     """
-    with path.open() as stream:
-        tomllib.load(stream)
+    with path.open("rb") as stream:
+        return tomllib.load(stream)
 
 
 def _read_yaml(path: Path) -> dict[str, Any]:
@@ -87,5 +87,5 @@ def _read_yaml(path: Path) -> dict[str, Any]:
     dict[str, Any]
         YAML file contents.
     """
-    with path.open() as stream:
-        return yaml.loads(stream)
+    with path.open("rb") as stream:
+        return yaml.safe_load(stream)

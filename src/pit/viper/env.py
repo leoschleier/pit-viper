@@ -1,6 +1,7 @@
 """Load environment variables from a `.env` file."""
 import os
 from pathlib import Path
+from typing import Self
 
 _EQUALS = "="
 _NEW_LINE = "\n"
@@ -11,9 +12,9 @@ _ENCLOSING_CHARS = f" \"'{_NEW_LINE}"
 class UnsupportedFileFormatError(Exception):
     """Raised when the file format is not supported."""
 
-    def __init__(self, path: Path) -> None:
+    def __init__(self: Self, path: Path) -> None:
         """Initialize the exception."""
-        super().__init__(f"Unsupported file format: {path.suffix()}")
+        super().__init__(f"Unsupported file format: {path.suffix}")
 
 
 def auto_env(
@@ -73,7 +74,7 @@ def _populate_env(*, path: Path, overwrite: bool = False) -> None:
             _set_variable(key=k, value=v, overwrite=overwrite)
 
 
-def _set_variable(key: str, value: str, *, overwrite: bool = False) -> str:
+def _set_variable(key: str, value: str, *, overwrite: bool = False) -> None:
     """Set an environment variable."""
     if overwrite:
         os.environ[key] = value

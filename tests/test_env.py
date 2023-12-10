@@ -2,7 +2,7 @@
 import os
 from pathlib import Path
 
-import py
+import py  # pyright: ignore [reportMissingTypeStubs]
 import pytest
 from pit.viper import env
 
@@ -10,7 +10,7 @@ _TEST_DOTENV_PATH = Path(__file__).parent / "data" / ".env"
 
 
 @pytest.fixture(autouse=True)
-def _prepare_env() -> None:
+def _prepare_env() -> None:  # pyright: ignore [reportUnusedFunction]
     """Prepare the environment for testing."""
     os.environ.pop("FOO", None)
     os.environ.pop("TEST_VAR", None)
@@ -46,7 +46,7 @@ def test_auto_env_with_overwrite() -> None:
     assert e["TEST_VAR"] == "test_value"
 
 
-def test_auto_env_with_non_existing_path(tmpdir: py.path.local) -> None:
+def test_auto_env_with_non_existing_path(tmpdir: py.path.LocalPath) -> None:
     """Test the `auto_env` function with a non-existing path.
 
     We expect that the function still returns a dictionary of

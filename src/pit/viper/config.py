@@ -49,7 +49,7 @@ def set_config_type(type_: str) -> None:
     _config_type = type_.lower()
 
 
-def getconf(key: str, default: Any = None) -> Any:
+def get_conf(key: str, default: Any = None) -> Any:
     """Get a value from the config.
 
     Parameters
@@ -74,7 +74,7 @@ def getconf(key: str, default: Any = None) -> Any:
     return value
 
 
-def setconf(key: str, value: Any) -> None:
+def set_conf(key: str, value: Any) -> None:
     """Set a value in the config.
 
     Parameters
@@ -139,4 +139,4 @@ def _safe_set(key: str, value: Any) -> None:
         for k, v in value.items():
             _safe_set(f"{key}.{k}", v)
     else:
-        setconf(key, value)
+        set_conf(key, value)

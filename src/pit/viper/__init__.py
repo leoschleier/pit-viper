@@ -18,14 +18,14 @@ Usage:
 For more information, see the documentation for the `auto_env`
 function.
 """
-from pit.viper.config import getconf as get
+from pit.viper.config import get_conf as get
 from pit.viper.config import (
     load_config,
     set_config_name,
     set_config_path,
     set_config_type,
 )
-from pit.viper.config import setconf as set  # noqa: A001
+from pit.viper.config import set_conf as set  # noqa: A001
 from pit.viper.env import auto_env
 
 __all__ = [

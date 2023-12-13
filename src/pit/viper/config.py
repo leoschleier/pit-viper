@@ -116,10 +116,6 @@ def load_config() -> dict[str, Any]:
     )
     config_path = _config_path / config_file
 
-    if not config_path.exists():
-        msg = f"Path {config_path.resolve()} does not exist."
-        raise FileNotFoundError(msg)
-
     config = _io.read_config(config_path)
     for key, value in config.items():
         _safe_set(key, value)

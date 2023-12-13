@@ -94,13 +94,8 @@ def set_conf(key: str, value: Any) -> None:
     config[keys[-1]] = value
 
 
-def load_config() -> dict[str, Any]:
+def load_config() -> None:
     """Load the config from the config file.
-
-    Returns
-    -------
-    dict[str, Any]
-       Config.
 
     Raises
     ------
@@ -132,7 +127,9 @@ def _safe_set(key: str, value: Any) -> None:
         Value to set.
     """
     if isinstance(value, dict):
-        for k, v in value.items():
+        for k, v in value.items():  # pyright: ignore [reportUnknownVariableType]
             _safe_set(f"{key}.{k}", v)
     else:
         set_conf(key, value)
+
+

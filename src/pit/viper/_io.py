@@ -29,15 +29,18 @@ def read_config(path: Path) -> dict[str, Any]:
     """
     file_extension = path.suffix if path.suffix else path.name
 
-    if file_extension == ".json":
-        return _read_json(path)
-    elif file_extension == ".toml":  # noqa: RET505
-        return _read_toml(path)
-    elif file_extension in [".yml", ".yaml"]:
-        return _read_yaml(path)
+    match file_extension:
+        case ".json":
+            return _read_json(path)
+        case ".toml":
+            return _read_toml(path)
+        case ".yml" | ".yaml":
+            return _read_yaml(path)
+        case _:
+            msg = f"Config file extension {file_extension} not supported."
+            raise ValueError(msg)
 
-    msg = f"Config file extension {file_extension} not supported."
-    raise ValueError(msg)
+
 
 
 def _read_json(path: Path) -> dict[str, Any]:

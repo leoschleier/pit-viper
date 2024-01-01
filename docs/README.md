@@ -33,6 +33,30 @@ from pit import viper
 env = viper.auto_env()
 ```
 
+### Config Files
+
+Config files are another config source for `pit-viper`. The package supports
+loading, accessing, and setting defaults for a config. Supported file formats
+are JSON, TOML, and YAML.
+
+```python
+from pathlib import Path
+from pit import viper
+
+MY_CONFIG_DIR = Path() / "config"
+
+viper.set_config_path(MY_CONFIG_DIR)
+viper.set_config_name("my_config")
+viper.set_config_type("toml")
+
+viper.set("foo", "default-value")
+
+viper.load_config()
+
+bar = viper.get("foo")
+nested_parameter = viper.get("my.nested.parameter")
+```
+
 ## Development
 
 We use [Poetry](https://github.com/python-poetry/poetry) for packaging and

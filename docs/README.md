@@ -61,12 +61,14 @@ nested_parameter = viper.get("my.nested.parameter")
 
 We use [Poetry](https://github.com/python-poetry/poetry) for packaging and
 dependency management.
-After installing Poetry, consider running the command below to configure Poetry
-to create virtual environments in a folder named `.venv` within the project's
-root directory.
+We recommend creating your virtual environment in a directory named `.venv` in
+the project's root directory. This ensures that all scripts and git hooks
+relying on the Python environment will work properly. Therefore, after
+installing Poetry, consider running the command below to configure Poetry for
+the present project.
 
 ```bash
-poetry config virtualenvs.in-project true
+poetry config virtualenvs.in-project true --local 
 ```
 
 Afterward, you can run the `install` command to install the dependencies
@@ -79,3 +81,8 @@ poetry install
 
 For a more comprehensive description of the Poetry setup and commands, see
 their [documentation](https://python-poetry.org/docs).
+
+The `pit-viper` package is intended to be
+[PEP 561](https://peps.python.org/pep-0561/) compatible. For this reason, we
+use a pre-commit hook that validates the code on every commit. The code
+validation includes checks with Black, Ruff, Mypy, and Pyright.

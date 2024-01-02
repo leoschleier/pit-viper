@@ -41,8 +41,6 @@ def read_config(path: Path) -> dict[str, Any]:
             raise ValueError(msg)
 
 
-
-
 def _read_json(path: Path) -> dict[str, Any]:
     """Read a JSON file.
 

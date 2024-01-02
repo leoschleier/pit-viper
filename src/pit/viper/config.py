@@ -127,9 +127,10 @@ def _safe_set(key: str, value: Any) -> None:
         Value to set.
     """
     if isinstance(value, dict):
-        for k, v in value.items():  # pyright: ignore [reportUnknownVariableType]
+        for (
+            k,
+            v,
+        ) in value.items():  # pyright: ignore [reportUnknownVariableType]
             _safe_set(f"{key}.{k}", v)
     else:
         set_conf(key, value)
-
-

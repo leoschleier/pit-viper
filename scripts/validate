@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+echo "Activate venv..."
+source .venv/bin/activate
+echo "Venv activated successfully"
+
+black --check .
+echo "Black passed."
+
+ruff check . 
+echo "Ruff passed."
+
+mypy .
+echo "Mypy passed."
+
+pyright .
+echo "Pyright passed."
+

@@ -32,6 +32,9 @@ pyyaml = "^6.0.1"
 pytest = "^7.4.2"
 black = "^23.10.1"
 ruff = "^0.1.3"
+mypy = "^1.8.0"
+types-pyyaml = "^6.0.12.12"
+pyright = "^1.1.344"
 
 [build-system]
 requires = ["poetry-core"]
@@ -40,6 +43,10 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 79
+
+[[tool.mypy.overrides]]
+module = "py"
+ignore_missing_imports = true
 
 [tool.pyright]
 venvPath = "."

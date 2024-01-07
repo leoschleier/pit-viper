@@ -1,9 +1,7 @@
 name: Bump version and create release
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 permissions:
   contents: write

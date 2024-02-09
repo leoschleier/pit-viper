@@ -6,11 +6,11 @@ echo "Activate venv..."
 source .venv/bin/activate
 echo "Venv activated successfully"
 
-black --check .
-echo "Black passed."
+ruff format . --check
+echo "Ruff formatter passed."
 
 ruff check . 
-echo "Ruff passed."
+echo "Ruff linter passed."
 
 mypy .
 echo "Mypy passed."

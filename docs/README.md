@@ -14,7 +14,7 @@ like the Viper package in Golang.
 ## Installation
 
 You can install `pit-viper` using `pip`:
-
+ 
 ```bash
 pip install pit-viper
 ```
@@ -32,6 +32,21 @@ from pit import viper
 
 env = viper.auto_env()
 ```
+
+We recommend accessing your environment variables via `viper.get`. 
+
+```python
+from pit import viper
+
+viper.auto_env()
+bar = viper.get("foo")
+```
+
+With this, you could also use`viper.set` to specify default parameters up
+front.
+
+**Note**: Changes to the environment following the first import of `pit-viper`
+will not be reflected in the package's record of environment variables.
 
 ### Config Files
 
@@ -56,6 +71,10 @@ viper.load_config()
 bar = viper.get("foo")
 nested_parameter = viper.get("my.nested.parameter")
 ```
+
+**Note**: After loading the environment varibles with `viper.auto_env`, every
+call of `viper.get` will try to retrieve the parameter from the environment
+variables before performing a lookup in the parameters of the config file.
 
 ## Development
 

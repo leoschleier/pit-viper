@@ -3,17 +3,9 @@ import os
 from pathlib import Path
 
 import py  # pyright: ignore [reportMissingTypeStubs]
-import pytest
-from pit.viper import env
+from pit import viper
 
-_TEST_DOTENV_PATH = Path(__file__).parent / "data" / ".env"
-
-
-@pytest.fixture(autouse=True)
-def _prepare_env() -> None:  # pyright: ignore [reportUnusedFunction]
-    """Prepare the environment for testing."""
-    os.environ.pop("FOO", None)
-    os.environ.pop("TEST_VAR", None)
+from tests import config
 
 
 def test_auto_env_without_overwrite() -> None:
@@ -25,7 +17,7 @@ def test_auto_env_without_overwrite() -> None:
     """
     os.environ["FOO"] = "already-set"
 
-    e = env.auto_env(path=_TEST_DOTENV_PATH)
+    e = viper.auto_env(path=config.TEST_DOTENV_PATH)
 
     assert e["FOO"] == "already-set"
     assert e["TEST_VAR"] == "test_value"
@@ -40,7 +32,7 @@ def test_auto_env_with_overwrite() -> None:
     """
     os.environ["FOO"] = "already-set"
 
-    e = env.auto_env(path=_TEST_DOTENV_PATH, overwrite=True)
+    e = viper.auto_env(path=config.TEST_DOTENV_PATH, overwrite=True)
 
     assert e["FOO"] == "bar"
     assert e["TEST_VAR"] == "test_value"
@@ -59,7 +51,7 @@ def test_auto_env_with_non_existing_path(tmpdir: py.path.LocalPath) -> None:
     """
     # Use a temporary directory to ensure that the path does not exist.
     non_existent_path = Path(tmpdir) / ".wrong"
-    e = env.auto_env(path=non_existent_path)
+    e = viper.auto_env(path=non_existent_path)
 
     assert e
     assert isinstance(e, dict)

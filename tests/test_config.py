@@ -1,9 +1,9 @@
 """Test the config module."""
-from pathlib import Path
 
 from pit import viper
 
-CONFIG_DIR = Path(__file__).parent / "data" / "config"
+from tests import config
+
 CONFIG_NAME = "config"
 CONFIG_TYPE = "toml"
 
@@ -18,7 +18,7 @@ EX_CONFIG = {
 
 def test_load_config() -> None:
     """Test loading a config file."""
-    viper.set_config_path(CONFIG_DIR)
+    viper.set_config_path(config.TEST_CONFIG_DIR)
     viper.set_config_name(CONFIG_NAME)
     viper.set_config_type(CONFIG_TYPE)
     viper.load_config()
@@ -29,7 +29,7 @@ def test_load_config() -> None:
 
 def test_load_config_with_defaults() -> None:
     """Test loading a config file with defaults."""
-    viper.set_config_path(CONFIG_DIR)
+    viper.set_config_path(config.TEST_CONFIG_DIR)
     viper.set_config_name(CONFIG_NAME)
     viper.set_config_type(CONFIG_TYPE)
 
@@ -50,3 +50,20 @@ def test_load_config_with_defaults() -> None:
 
     assert viper.get("test.nested.d") == "overwritten-string"
     assert viper.get("test.nested.e") == "default-string"
+
+
+def test_config_env_hierarchy() -> None:
+    """Test the hierarchy of config and environment variables."""
+    viper.set_config_path(config.TEST_CONFIG_DIR)
+    viper.set_config_name(CONFIG_NAME)
+    viper.set_config_type(CONFIG_TYPE)
+
+    viper.set("FOO", "default bar")
+
+    viper.auto_env(path=config.TEST_DOTENV_PATH, overwrite=True)
+    viper.load_config()
+
+    # Environment variables should overwrite config variables.
+    # Therefore, we expect the value of `foo` to be `bar` which is the
+    # value specified in the .env file.
+    assert viper.get("foo") == "bar"

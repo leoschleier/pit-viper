@@ -1,8 +1,9 @@
 """Load config from file."""
+import os
 from pathlib import Path
 from typing import Any
 
-from pit.viper import _io
+from pit.viper import _io, env
 
 _config_path: Path | None = None
 _config_name: str = ""
@@ -64,14 +65,19 @@ def get_conf(key: str, default: Any = None) -> Any:
     Any
         Value for the key.
     """
+    if env.is_env_enabled():
+        env_value = os.environ.get(key)
+        if env_value is not None:
+            return env_value
+
     keys = key.split(".")
-    value = _config
+    config_value = _config
 
     for k in keys:
-        if isinstance(value, dict):
-            value = value.get(k, default)
+        if isinstance(config_value, dict):
+            config_value = config_value.get(k, default)
 
-    return value
+    return config_value
 
 
 def set_conf(key: str, value: Any) -> None:

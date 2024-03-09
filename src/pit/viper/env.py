@@ -5,8 +5,9 @@ from typing import Self
 
 _EQUALS = "="
 _NEW_LINE = "\n"
-
 _ENCLOSING_CHARS = f" \"'{_NEW_LINE}"
+
+_env_enabled = False
 
 
 class UnsupportedFileFormatError(Exception):
@@ -55,7 +56,19 @@ def auto_env(
         else:
             raise UnsupportedFileFormatError(path=path)
 
+    global _env_enabled  # noqa: PLW0603
+    _env_enabled = True
+
     return dict(os.environ)
+
+
+def is_env_enabled() -> bool:
+    """Check if environment variables are enabled.
+
+    Environment variables are enabled if the `auto_env` function has
+    been called.
+    """
+    return _env_enabled
 
 
 def _populate_env(*, path: Path, overwrite: bool = False) -> None:

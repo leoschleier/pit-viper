@@ -85,4 +85,6 @@ their [documentation](https://python-poetry.org/docs).
 The `pit-viper` package is intended to be
 [PEP 561](https://peps.python.org/pep-0561/) compatible. For this reason, we
 use a pre-commit hook that validates the code on every commit. The code
-validation includes checks with Black, Ruff, Mypy, and Pyright.
+validation runs tests and performs checks using Ruff, Mypy, and Pyright.
+Execute `scripts/setup` to add the validation as your pre-commit hook for this
+project.

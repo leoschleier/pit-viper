@@ -1,3 +1,10 @@
+## v0.3.0 (2024-03-10)
+
+### Feat
+
+- Introduce hierarchy between env and config (#16)
+- Support PEP 561 (#13)
+
 ## v0.2.0 (2024-01-01)
 
 ### Feat

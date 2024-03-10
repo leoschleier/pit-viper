@@ -1,5 +1,5 @@
 [tool.commitizen]
-version = "0.2.0"
+version = "0.3.0"
 name = "cz_conventional_commits"
 tag_format = "v$version"
 version_files = [
@@ -11,7 +11,7 @@ changelog_file = "docs/CHANGELOG.md"
 
 [tool.poetry]
 name = "pit-viper"
-version = "0.2.0"
+version = "0.3.0"
 description = "Pit-Viper is a Python package that offers configuration management capabilities like the Viper package in Golang."
 authors = ["Leo Schleier <43878374+leoschleier@users.noreply.github.com>"]
 license = "MIT"

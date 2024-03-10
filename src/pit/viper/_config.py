@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 from typing import Any
 
-from pit.viper import _io, env
+from pit.viper import _env, _io
 
 _config_path: Path | None = None
 _config_name: str = ""
@@ -65,7 +65,7 @@ def get_conf(key: str, default: Any = None) -> Any:
     Any
         Value for the key.
     """
-    if env.is_env_enabled():
+    if _env.is_env_enabled():
         env_value = os.environ.get(key)
         if env_value is not None:
             return env_value

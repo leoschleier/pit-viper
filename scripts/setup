@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Parent path (also resolving symlinks)
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+git_hooks_path=$parent_path/../.git/hooks
+
+# Add pre-commit hook
+ln -s -f $parent_path/hooks/pre-commit $git_hooks_path/pre-commit

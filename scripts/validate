@@ -18,3 +18,5 @@ echo "Mypy passed."
 pyright .
 echo "Pyright passed."
 
+pytest .
+echo "Pytest passed."

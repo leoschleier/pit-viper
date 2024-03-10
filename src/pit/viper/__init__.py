@@ -19,15 +19,15 @@ Usage:
 
 For more information, see the https://github.com/leoschleier/pit-viper.
 """
-from pit.viper.config import get_conf as get
-from pit.viper.config import (
+from pit.viper._config import get_conf as get
+from pit.viper._config import (
     load_config,
     set_config_name,
     set_config_path,
     set_config_type,
 )
-from pit.viper.config import set_conf as set  # noqa: A001
-from pit.viper.env import auto_env
+from pit.viper._config import set_conf as set  # noqa: A001
+from pit.viper._env import auto_env
 
 __all__ = [
     "auto_env",

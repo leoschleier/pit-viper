@@ -1,3 +1,9 @@
+## v1.0.0 (2024-04-21)
+
+### Feat
+
+- Mark modules as internal (#18)
+
 ## v0.3.0 (2024-03-10)
 
 ### Feat

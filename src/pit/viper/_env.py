@@ -1,7 +1,6 @@
 """Load environment variables from a `.env` file."""
 import os
 from pathlib import Path
-from typing import Self
 
 _EQUALS = "="
 _NEW_LINE = "\n"
@@ -13,7 +12,7 @@ _env_enabled = False
 class UnsupportedFileFormatError(Exception):
     """Raised when the file format is not supported."""
 
-    def __init__(self: Self, path: Path) -> None:
+    def __init__(self: "UnsupportedFileFormatError", path: Path) -> None:
         """Initialize the exception."""
         super().__init__(f"Unsupported file format: {path.suffix}")
 

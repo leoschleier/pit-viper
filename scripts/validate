@@ -2,21 +2,20 @@
 
 set -e
 
-echo "Activate venv..."
+echo "Activating virtual environment..."
 source .venv/bin/activate
-echo "Venv activated successfully"
 
+echo "Running ruff formatter..."
 ruff format . --check
-echo "Ruff formatter passed."
 
+echo "Running ruff linter..."
 ruff check . 
-echo "Ruff linter passed."
 
+echo "Running mypy..."
 mypy .
-echo "Mypy passed."
 
+echo "Running pyright..."
 pyright .
-echo "Pyright passed."
 
+echo "Running pytest..."
 pytest .
-echo "Pytest passed."

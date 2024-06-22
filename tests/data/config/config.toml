@@ -1,4 +1,4 @@
-foo = "bar"
+foo = "config-bar"
 
 [test]
 [test.nested]

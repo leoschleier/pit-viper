@@ -27,7 +27,7 @@ from pit.viper._config import (
     set_config_type,
 )
 from pit.viper._config import set_conf as set  # noqa: A001
-from pit.viper._env import UnsupportedFileFormatError, auto_env
+from pit.viper._env import UnsupportedFileFormatError, auto_env, set_env_prefix
 
 __all__ = [
     "auto_env",
@@ -37,5 +37,6 @@ __all__ = [
     "set_config_name",
     "set_config_path",
     "set_config_type",
+    "set_env_prefix",
     "UnsupportedFileFormatError",
 ]

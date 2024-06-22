@@ -66,7 +66,8 @@ def get_conf(key: str, default: Any = None) -> Any:
         Value for the key.
     """
     if _env.is_env_enabled():
-        env_value = os.environ.get(key)
+        env_key = f"{_env.get_env_prefix()}{key.upper()}"
+        env_value = os.environ.get(env_key)
         if env_value is not None:
             return env_value
 

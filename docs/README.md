@@ -14,7 +14,7 @@ like the Viper package in Golang.
 ## Installation
 
 You can install `pit-viper` using `pip`:
- 
+
 ```bash
 pip install pit-viper
 ```
@@ -33,12 +33,14 @@ from pit import viper
 env = viper.auto_env()
 ```
 
-We recommend accessing your environment variables via `viper.get`. 
+We recommend accessing your environment variables via `viper.get`.
 
 ```python
 from pit import viper
 
+# Bind environment variables
 viper.auto_env()
+
 bar = viper.get("foo")
 ```
 
@@ -47,6 +49,20 @@ front.
 
 **Note**: Changes to the environment following the first import of `pit-viper`
 will not be reflected in the package's record of environment variables.
+
+Prefixes are commonly being used to prevent name collisions in environment
+variables. You can specify a prefix as follows:
+
+```python
+from pit import viper
+
+viper.set_env_prefix("pf")
+
+# Bind environment variables 
+viper.auto_env() # PF_FOO = "bar" 
+
+bar = viper.get("foo") # "bar"
+```
 
 ### Config Files
 

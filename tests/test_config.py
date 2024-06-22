@@ -8,7 +8,7 @@ CONFIG_NAME = "config"
 CONFIG_TYPE = "toml"
 
 EX_CONFIG = {
-    "foo": "bar",
+    "foo": "config-bar",
     "test.nested.a": 0,
     "test.nested.b": 1.1,
     "test.nested.c": True,
@@ -58,12 +58,20 @@ def test_config_env_hierarchy() -> None:
     viper.set_config_name(CONFIG_NAME)
     viper.set_config_type(CONFIG_TYPE)
 
-    viper.set("FOO", "default bar")
+    viper.set("foo", "default bar")
 
     viper.auto_env(path=config.TEST_DOTENV_PATH, overwrite=True)
     viper.load_config()
 
     # Environment variables should overwrite config variables.
-    # Therefore, we expect the value of `foo` to be `bar` which is the
-    # value specified in the .env file.
-    assert viper.get("foo") == "bar"
+    # Therefore, we expect the value of `foo` to be `env-bar` which is
+    # the value specified in the .env file.
+    assert viper.get("foo") == "env-bar"
+
+
+def test_env_prefix() -> None:
+    """Test setting an environment variable prefix."""
+    viper.set_env_prefix("test")
+    viper.auto_env(path=config.TEST_DOTENV_PATH, overwrite=True)
+
+    assert viper.get("foo") == "env-test-bar"

@@ -34,7 +34,7 @@ def test_auto_env_with_overwrite() -> None:
 
     e = viper.auto_env(path=config.TEST_DOTENV_PATH, overwrite=True)
 
-    assert e["FOO"] == "bar"
+    assert e["FOO"] == "env-bar"
     assert e["TEST_VAR"] == "test_value"
 
 

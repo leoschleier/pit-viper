@@ -11,7 +11,7 @@ CONFIG_TOML: Final = CONFIG_DIR / "config.toml"
 CONFIG_YAML: Final = CONFIG_DIR / "config.yaml"
 
 EX_CONFIG = {
-    "foo": "bar",
+    "foo": "config-bar",
     "test": {
         "nested": {
             "a": 0,

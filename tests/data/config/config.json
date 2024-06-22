@@ -1,5 +1,5 @@
 {
-    "foo": "bar",
+    "foo": "config-bar",
     "test": {
         "nested": {
             "a": 0,

@@ -6,6 +6,7 @@ _EQUALS = "="
 _NEW_LINE = "\n"
 _ENCLOSING_CHARS = f" \"'{_NEW_LINE}"
 
+_env_prefix = ""
 _env_enabled = False
 
 
@@ -68,6 +69,26 @@ def is_env_enabled() -> bool:
     been called.
     """
     return _env_enabled
+
+
+def set_env_prefix(prefix: str) -> None:
+    """Set a prefix for environment variables.
+
+    The prefix will be added to the key used for accessing environment
+    variables.
+
+    Parameters
+    ----------
+    prefix : str
+        Prefix to add to environment variables.
+    """
+    global _env_prefix  # noqa: PLW0603
+    _env_prefix = prefix.upper()
+
+
+def get_env_prefix() -> str:
+    """Get the prefix for environment variables."""
+    return f"{_env_prefix}_" if _env_prefix else ""
 
 
 def _populate_env(*, path: Path, overwrite: bool = False) -> None:

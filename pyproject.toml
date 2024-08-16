@@ -52,6 +52,7 @@ venvPath = "."
 venv = ".venv"
 typeCheckingMode = "strict"
 include = ["src", "tests"]
+ignore = ["tests/conftest.py"]
 pythonVersion = "3.11"
 
 [tool.ruff]
@@ -75,7 +76,7 @@ convention = "numpy"
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["E401"]  # Unused import
 "tests/*" = ["S101"]  # Use of assert detected
-
+"tests/conftest.py" = ["SLF001"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

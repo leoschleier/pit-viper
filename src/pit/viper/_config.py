@@ -1,5 +1,4 @@
 """Load config from file."""
-import os
 from pathlib import Path
 from typing import Any
 
@@ -65,11 +64,9 @@ def get_conf(key: str, default: Any = None) -> Any:
     Any
         Value for the key.
     """
-    if _env.is_env_enabled():
-        env_key = f"{_env.get_env_prefix()}{key.upper()}"
-        env_value = os.environ.get(env_key)
-        if env_value is not None:
-            return env_value
+    env_value = _env.get_env(key)
+    if env_value is not None:
+        return env_value
 
     keys = key.split(".")
     config_value = _config

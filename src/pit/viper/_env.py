@@ -1,6 +1,7 @@
 """Load environment variables from a `.env` file."""
 import os
 from pathlib import Path
+from typing import Any
 
 _EQUALS = "="
 _NEW_LINE = "\n"
@@ -8,6 +9,7 @@ _ENCLOSING_CHARS = f" \"'{_NEW_LINE}"
 
 _env_prefix = ""
 _env_enabled = False
+_oldnew: dict[str, str] = {}
 
 
 class UnsupportedFileFormatError(Exception):
@@ -89,6 +91,33 @@ def set_env_prefix(prefix: str) -> None:
 def get_env_prefix() -> str:
     """Get the prefix for environment variables."""
     return f"{_env_prefix}_" if _env_prefix else ""
+
+
+def set_env_key_replacer(oldnew: dict[str, str]) -> None:
+    """Set replacer to replace keys and substrings of keys.
+
+    Replacements are being performed when retrieving environment
+    variables.
+
+    Parameters
+    ----------
+    oldnew : dict[str, str]
+       Maps keys and substrings of keys used to retrieve environment
+       variables to new keys and substrings.
+    """
+    global _oldnew  # noqa: PLW0603w
+    _oldnew = oldnew
+
+
+def get_env(key: str) -> Any:
+    """Get an environment variable by key."""
+    if is_env_enabled():
+        for old, new in _oldnew.items():
+            key = key.replace(old, new)
+        env_key = f"{get_env_prefix()}{key.upper()}"
+        return os.environ.get(env_key)
+
+    return None
 
 
 def _populate_env(*, path: Path, overwrite: bool = False) -> None:

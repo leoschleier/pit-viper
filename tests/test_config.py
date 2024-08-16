@@ -75,3 +75,18 @@ def test_env_prefix() -> None:
     viper.auto_env(path=config.TEST_DOTENV_PATH, overwrite=True)
 
     assert viper.get("foo") == "env-test-bar"
+
+
+def test_env_key_replacer() -> None:
+    """Test replacing keys and substrings of keys."""
+    viper.set_env_key_replacer({"old-foo": "foo", ".": "_"})
+    viper.auto_env(path=config.TEST_DOTENV_PATH, overwrite=True)
+
+    assert viper.get("foo") == "env-bar"
+    assert viper.get("old-foo") == "env-bar"
+
+    assert viper.get("test_var") == "test_value"
+    assert viper.get("test.var") == "test_value"
+
+    assert viper.get("test_foo") == "env-test-bar"
+    assert viper.get("test.foo") == "env-test-bar"

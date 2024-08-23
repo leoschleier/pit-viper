@@ -64,6 +64,23 @@ viper.auto_env() # PF_FOO = "bar"
 bar = viper.get("foo") # "bar"
 ```
 
+We provide you with the option to overwrite env keys when querying
+environment variables. For example, you might want to overwrite a `.`
+used for retrieving parameters from a config with a `_` when accessing
+environment variables. This can be useful for creating a mapping between
+env keys and config keys.
+
+```python
+from pit import viper
+
+# Bind environment variables 
+viper.auto_env() # MY_FOO = "bar" 
+
+viper.set_env_key_replacer({".": "_"})
+
+bar = viper.get("my.foo") # "bar"
+```
+
 ### Config Files
 
 Config files are another config source for `pit-viper`. The package supports

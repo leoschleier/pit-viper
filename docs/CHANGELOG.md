@@ -1,3 +1,11 @@
+## v1.1.0 (2024-08-23)
+
+### Feat
+
+- Add replacer for env keys (#20)
+- Use env prefix (#19)
+- Use prefix for env variables
+
 ## v1.0.0 (2024-04-21)
 
 ### Feat

@@ -96,8 +96,8 @@ def get_env_prefix() -> str:
 def set_env_key_replacer(oldnew: dict[str, str]) -> None:
     """Set replacer to replace keys and substrings of keys.
 
-    Replacements are being performed when retrieving environment
-    variables.
+    Replacements are being performed in the order defined in `oldnew`,
+    when retrieving environment variables.
 
     Parameters
     ----------
